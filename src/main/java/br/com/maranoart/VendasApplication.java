@@ -1,43 +1,43 @@
-package br.com.maranoart.vendas;
+package br.com.maranoart;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.maranoart.domain.entity.Cliente;
+import br.com.maranoart.domain.repositorio.Clientes;
+
 @SpringBootApplication
+@Controller
 @RestController
 public class VendasApplication {
 
-	@Autowired
-	@Qualifier("gato")
-	private Animal animal;
+    @GetMapping("/")
+	public String home(){
+		return "index.html";
+	}
 
-	@Bean(name = "executarAnimal")
-	public CommandLineRunner executar(){
+
+	@Bean
+    public CommandLineRunner init(@Autowired Clientes clientes){
 		return args -> {
-			this.animal.fazerBarulho();
+			clientes.salvar(new Cliente("Matheus"));
+
+			clientes.salvar(new Cliente("Outro Cliente"));
+
+			List<Cliente> todosClientes = clientes.obterTodos();
+			todosClientes.forEach(System.out::println);
+
+			
 		};
 	}
-
-
-
-
-	@Autowired
-	@Value("${application.name}")
-	private String applicationName;
-
-	@GetMapping("/hello")
-	public String helloWorld(){
-		return applicationName;
-
-	}
-	
 
 	public static void main(String[] args) {
 		SpringApplication.run(VendasApplication.class, args);
