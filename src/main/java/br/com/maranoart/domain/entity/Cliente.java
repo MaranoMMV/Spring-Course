@@ -1,5 +1,10 @@
 package br.com.maranoart.domain.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="cliente")
 public class Cliente {
     //Atributos
     private Integer id;
