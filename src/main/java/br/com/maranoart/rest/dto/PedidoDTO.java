@@ -15,12 +15,12 @@ public class PedidoDTO {
     
     private Integer cliente;
     private BigDecimal total;
-    private List<itemPedidoDTO> items;
+    private List<ItemsPedidoDTO> items;
     
     public PedidoDTO() {
     }
 
-    public PedidoDTO(Integer cliente, BigDecimal total, List<itemPedidoDTO> items) {
+    public PedidoDTO(Integer cliente, BigDecimal total, List<ItemsPedidoDTO> items) {
         this.cliente = cliente;
         this.total = total;
         this.items = items;
@@ -42,7 +42,7 @@ public class PedidoDTO {
         this.total = total;
     }
 
-    public List<itemPedidoDTO> getItems() {
+    public List<ItemsPedidoDTO> getItems() {
         return items;
     }
 

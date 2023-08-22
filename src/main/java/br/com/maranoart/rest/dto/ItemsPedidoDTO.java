@@ -1,13 +1,13 @@
 package br.com.maranoart.rest.dto;
 
-public class itemPedidoDTO {
+public class ItemsPedidoDTO {
     private Integer produto;
     private Integer quantidade;
 
-    public itemPedidoDTO(){
+    public ItemsPedidoDTO(){
     }
 
-    public itemPedidoDTO(Integer produto, Integer quantidade) {
+    public ItemsPedidoDTO(Integer produto, Integer quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
     }
