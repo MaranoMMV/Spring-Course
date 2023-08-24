@@ -49,11 +49,11 @@
 			<artifactId>h2</artifactId>
 		</dependency>
 		
-		<!-- devTools -->
+		<!-- devTools
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-		</dependency>
+		</dependency> -->
 
 		<!-- Starter Security -->
 		<!-- <dependency>

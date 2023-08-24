@@ -3,6 +3,10 @@ package br.com.maranoart.rest.dto;
 import java.math.BigDecimal;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 // {
 //     "cliente" : 1,
 //     "total" : 100,
@@ -11,39 +15,12 @@ import java.util.List;
 //         "quantidade" : 10
 //     ]
 // }
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PedidoDTO {
     
     private Integer cliente;
     private BigDecimal total;
     private List<ItemsPedidoDTO> items;
-    
-    public PedidoDTO() {
-    }
-
-    public PedidoDTO(Integer cliente, BigDecimal total, List<ItemsPedidoDTO> items) {
-        this.cliente = cliente;
-        this.total = total;
-        this.items = items;
-    }
-
-    public Integer getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Integer cliente) {
-        this.cliente = cliente;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
-
-    public List<ItemsPedidoDTO> getItems() {
-        return items;
-    }
-
 }

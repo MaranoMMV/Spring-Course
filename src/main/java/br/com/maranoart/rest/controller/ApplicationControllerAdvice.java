@@ -1,4 +1,4 @@
-package br.com.maranoart.rest;
+package br.com.maranoart.rest.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import br.com.maranoart.exception.RegraNegocioException;
+import br.com.maranoart.rest.ApiErrors;
 
 @RestControllerAdvice
 public class ApplicationControllerAdvice {
