@@ -2,6 +2,8 @@ package br.com.maranoart.rest.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
@@ -42,7 +44,7 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente save(@RequestBody Cliente cliente ){
+    public Cliente save(@RequestBody @Valid Cliente cliente ){
         return clientes.save(cliente);
     }
 

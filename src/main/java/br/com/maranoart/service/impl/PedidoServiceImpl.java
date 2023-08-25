@@ -82,5 +82,11 @@ public class PedidoServiceImpl implements PedidoService{
     public Optional<Pedido> obterPedidoCompleto(Integer id) {
         return repository.findByIdFetchItens(id);
     }
+
+    @Override
+    public void atualizaStatus(Integer id, StatusPedido valueOf) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'atualizaStatus'");
+    }
     
 }
