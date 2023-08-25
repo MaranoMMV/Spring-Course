@@ -2,6 +2,7 @@ package br.com.maranoart.service.impl;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import br.com.maranoart.domain.entity.Cliente;
 import br.com.maranoart.domain.entity.ItemPedido;
 import br.com.maranoart.domain.entity.Pedido;
 import br.com.maranoart.domain.entity.Produto;
+import br.com.maranoart.domain.entity.enums.StatusPedido;
 import br.com.maranoart.domain.repository.Clientes;
 import br.com.maranoart.domain.repository.ItemsPedido;
 import br.com.maranoart.domain.repository.Pedidos;
@@ -42,6 +44,7 @@ public class PedidoServiceImpl implements PedidoService{
         pedido.setTotal(dto.getTotal());
         pedido.setDataPedido(LocalDate.now());
         pedido.setCliente(cliente);
+        pedido.setStatus(StatusPedido.REALIZADO);
 
         List<ItemPedido> itemsPedido = converterItems(pedido, dto.getItems());
         repository.save(pedido);
@@ -73,6 +76,11 @@ public class PedidoServiceImpl implements PedidoService{
                     return itemPedido;
                 }).collect(Collectors.toList());
 
+    }
+
+    @Override
+    public Optional<Pedido> obterPedidoCompleto(Integer id) {
+        return repository.findByIdFetchItens(id);
     }
     
 }
