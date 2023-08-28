@@ -17,6 +17,7 @@ import br.com.maranoart.domain.repository.Clientes;
 import br.com.maranoart.domain.repository.ItemsPedido;
 import br.com.maranoart.domain.repository.Pedidos;
 import br.com.maranoart.domain.repository.Produtos;
+import br.com.maranoart.exception.PedidoNaoEncontradoException;
 import br.com.maranoart.exception.RegraNegocioException;
 import br.com.maranoart.rest.dto.ItemsPedidoDTO;
 import br.com.maranoart.rest.dto.PedidoDTO;
@@ -84,9 +85,14 @@ public class PedidoServiceImpl implements PedidoService{
     }
 
     @Override
-    public void atualizaStatus(Integer id, StatusPedido valueOf) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atualizaStatus'");
+    @Transactional
+    public void atualizaStatus( Integer id, StatusPedido statusPedido ) {
+        repository
+                .findById(id)
+                .map( pedido -> {
+                    pedido.setStatus(statusPedido);
+                    return repository.save(pedido);
+                }).orElseThrow(() -> new PedidoNaoEncontradoException("Pedido não encontrado")  );
     }
     
 }

@@ -29,15 +29,13 @@ public class ApplicationControllerAdvice {
         return new ApiErrors(ex.getMessage());
     }
 
-    @ExceptionHandler(RegraNegocioException.class)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiErrors handleMethodNotValidException(MethodArgumentNotValidException ex){
-        List<String> errors = ex.getBindingResult()
-                                .getAllErrors()
-                                .stream()
-                                .map( erro -> erro.getDefaultMessage())
-                                .collect(Collectors.toList());
-    return new ApiErrors(errors);
-    
+    public ApiErrors handleMethodNotValidException( MethodArgumentNotValidException ex ){
+        List<String> errors = ex.getBindingResult().getAllErrors()
+                .stream()
+                .map(erro -> erro.getDefaultMessage())
+                .collect(Collectors.toList());
+        return new ApiErrors(errors);
     }
 }
